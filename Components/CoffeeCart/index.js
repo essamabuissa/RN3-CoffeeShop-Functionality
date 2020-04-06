@@ -7,22 +7,21 @@ import { Text, List, Button } from "native-base";
 import CartItem from "./CartItem";
 
 class CoffeeCart extends Component {
-  state = {
-    items: [
+  render() {
+    const items = [
       {
         drink: "Latte",
         option: "Small",
-        quantity: 2
+        quantity: 2,
       },
       {
         drink: "Espresso",
         option: "Large",
-        quantity: 1
-      }
-    ]
-  };
-  render() {
-    const cartItems = this.state.items.map(item => (
+        quantity: 1,
+      },
+    ];
+
+    const cartItems = items.map((item) => (
       <CartItem item={item} key={`${item.drink} ${item.option}`} />
     ));
 
@@ -36,9 +35,5 @@ class CoffeeCart extends Component {
     );
   }
 }
-
-CoffeeCart.navigationOptions = {
-  title: "Cart"
-};
 
 export default CoffeeCart;

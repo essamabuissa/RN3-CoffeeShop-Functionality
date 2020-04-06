@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 
-// Styling Components
-import { Image, TextInput, TouchableOpacity, View } from "react-native";
+// Screen Names
+import { COFFEE_SHOPS, SIGNUP } from "../../Navigation/screenNames";
 
+// Styling Components
+import { TextInput, TouchableOpacity, View } from "react-native";
 import { Text } from "native-base";
 import styles from "./styles";
 
@@ -24,13 +26,13 @@ class Login extends Component {
         />
         <TouchableOpacity
           style={styles.authButton}
-          onPress={() => this.props.navigation.navigate("ListScreen")}
+          onPress={() => this.props.navigation.replace(COFFEE_SHOPS)}
         >
           <Text style={styles.authButtonText}>Log in</Text>
         </TouchableOpacity>
         <Text
           style={styles.authOther}
-          onPress={() => this.props.navigation.navigate("Signup")}
+          onPress={() => this.props.navigation.replace(SIGNUP)}
         >
           Click here to register!
         </Text>
@@ -38,9 +40,5 @@ class Login extends Component {
     );
   }
 }
-
-Login.navigationOptions = {
-  title: "Login"
-};
 
 export default Login;

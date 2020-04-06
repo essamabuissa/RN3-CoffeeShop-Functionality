@@ -1,15 +1,17 @@
 import React from "react";
-import { withNavigation } from "react-navigation";
 import { Icon } from "native-base";
+
+// Screen Names
+import { CART } from "../../Navigation/screenNames";
 
 const CartButton = ({ navigation }) => {
   return (
     <Icon
       name="shoppingcart"
       type="AntDesign"
-      onPress={() => navigation.navigate("CartScreen")}
+      onPress={() => navigation.navigate(CART)}
     />
   );
 };
 
-export default withNavigation(CartButton);
+export default CartButton;

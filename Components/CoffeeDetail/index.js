@@ -13,38 +13,21 @@ import {
   Left,
   Picker,
   Right,
-  Text
+  Text,
 } from "native-base";
 
 // Style
 import styles from "./styles";
 
-//List
-import coffeeshops from "../CoffeeList/list";
-import CartButton from "../Buttons/CartButton";
-
 class CoffeeDetail extends Component {
   state = {
-    drink: "Cappuccino",
-    option: "Small",
-    quantity: 1
+    drink: "",
+    option: "",
+    quantity: 1,
   };
 
-  changeDrink = value =>
-    this.setState({
-      drink: value
-    });
-
-  changeOption = value =>
-    this.setState({
-      option: value
-    });
-
   render() {
-    const coffeeshopID = this.props.navigation.getParam("coffeeshopID");
-    const coffeeshop = coffeeshops.find(
-      coffeeshop => coffeeshopID === coffeeshop.id
-    );
+    const { coffeeshop } = this.props.route.params;
     return (
       <Container>
         <Content>
@@ -67,7 +50,8 @@ class CoffeeDetail extends Component {
                   note
                   mode="dropdown"
                   style={styles.picker}
-                  onValueChange={this.changeDrink}
+                  selectedValue={this.state.drink}
+                  onValueChange={(drink) => this.setState({ drink })}
                   placeholder="Choose Drink"
                 >
                   <Picker.Item label="Cappuccino" value="Cappuccino" />
@@ -80,7 +64,8 @@ class CoffeeDetail extends Component {
                   note
                   mode="dropdown"
                   style={styles.picker}
-                  onValueChange={this.changeOption}
+                  selectedValue={this.state.option}
+                  onValueChange={(option) => this.setState({ option })}
                   placeholder="Choose Option"
                 >
                   <Picker.Item label="Small" value="Small" />
@@ -93,7 +78,7 @@ class CoffeeDetail extends Component {
               <Body style={styles.numericInput}>
                 <NumericInput
                   value={this.state.value}
-                  onChange={quantity => this.setState({ quantity })}
+                  onChange={(quantity) => this.setState({ quantity })}
                   initValue={1}
                 />
               </Body>
@@ -110,10 +95,5 @@ class CoffeeDetail extends Component {
     );
   }
 }
-
-CoffeeDetail.navigationOptions = ({ navigation }) => ({
-  title: navigation.getParam("coffeeshopName"),
-  headerRight: <CartButton />
-});
 
 export default CoffeeDetail;

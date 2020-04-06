@@ -4,26 +4,24 @@ import React from "react";
 import { List, Content } from "native-base";
 
 // Store
-import coffeeshops from "./list";
+import coffeeshops from "./data";
 
 // Component
 import CoffeeItem from "./CoffeeItem";
-import CartButton from "../Buttons/CartButton";
 
-const CoffeeList = () => {
-  const coffeeshopList = coffeeshops.map(coffeeshop => (
-    <CoffeeItem coffeeshop={coffeeshop} key={coffeeshop.id} />
+const CoffeeList = ({ navigation }) => {
+  const coffeeshopList = coffeeshops.map((coffeeshop) => (
+    <CoffeeItem
+      coffeeshop={coffeeshop}
+      key={coffeeshop.id}
+      navigation={navigation}
+    />
   ));
   return (
     <Content>
       <List>{coffeeshopList}</List>
     </Content>
   );
-};
-
-CoffeeList.navigationOptions = {
-  title: "Coffee List",
-  headerRight: <CartButton />
 };
 
 export default CoffeeList;
