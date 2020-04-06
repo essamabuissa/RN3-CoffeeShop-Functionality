@@ -3,8 +3,6 @@
     "name": "CoffeeApp",
     "description": "This project is really great.",
     "slug": "CoffeeApp",
-    "privacy": "public",
-    "sdkVersion": "36.0.0",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
