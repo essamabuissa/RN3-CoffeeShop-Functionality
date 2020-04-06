@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 // Screen Names
 import { COFFEE_SHOPS, SIGNUP } from "../../Navigation/screenNames";
@@ -8,37 +8,30 @@ import { TextInput, TouchableOpacity, View } from "react-native";
 import { Text } from "native-base";
 import styles from "./styles";
 
-class Login extends Component {
-  render() {
-    return (
-      <View style={styles.authContainer}>
-        <Text style={styles.authTitle}>Login</Text>
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="Username"
-          placeholderTextColor="#A6AEC1"
-        />
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="Password"
-          placeholderTextColor="#A6AEC1"
-          secureTextEntry={true}
-        />
-        <TouchableOpacity
-          style={styles.authButton}
-          onPress={() => this.props.navigation.replace(COFFEE_SHOPS)}
-        >
-          <Text style={styles.authButtonText}>Log in</Text>
-        </TouchableOpacity>
-        <Text
-          style={styles.authOther}
-          onPress={() => this.props.navigation.replace(SIGNUP)}
-        >
-          Click here to register!
-        </Text>
-      </View>
-    );
-  }
-}
+const Login = ({ navigation }) => (
+  <View style={styles.authContainer}>
+    <Text style={styles.authTitle}>Login</Text>
+    <TextInput
+      style={styles.authTextInput}
+      placeholder="Username"
+      placeholderTextColor="#A6AEC1"
+    />
+    <TextInput
+      style={styles.authTextInput}
+      placeholder="Password"
+      placeholderTextColor="#A6AEC1"
+      secureTextEntry={true}
+    />
+    <TouchableOpacity
+      style={styles.authButton}
+      onPress={() => navigation.replace(COFFEE_SHOPS)}
+    >
+      <Text style={styles.authButtonText}>Log in</Text>
+    </TouchableOpacity>
+    <Text style={styles.authOther} onPress={() => navigation.replace(SIGNUP)}>
+      Click here to register!
+    </Text>
+  </View>
+);
 
 export default Login;
