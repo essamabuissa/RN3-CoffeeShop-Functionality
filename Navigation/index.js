@@ -2,7 +2,14 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Screen Names
-import { LOGIN, COFFEE_SHOPS, COFFEE_SHOP, CART, SIGNUP } from "./screenNames";
+import {
+  LOGIN,
+  COFFEE_SHOPS,
+  COFFEE_SHOP,
+  CART,
+  SIGNUP,
+  CHECKOUTS,
+} from "./screenNames";
 
 import CoffeeList from "../Components/CoffeeList";
 import CoffeeDetail from "../Components/CoffeeDetail";

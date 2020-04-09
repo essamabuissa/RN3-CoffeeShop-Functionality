@@ -6,32 +6,45 @@ import { Text, List, Button } from "native-base";
 // Component
 import CartItem from "./CartItem";
 
-const CoffeeCart = () => {
-  const items = [
-    {
-      drink: "Latte",
-      option: "Small",
-      quantity: 2,
-    },
-    {
-      drink: "Espresso",
-      option: "Large",
-      quantity: 1,
-    },
-  ];
+import { Image } from "react-native";
 
-  const cartItems = items.map((item) => (
+//Redux
+import { connect } from "react-redux";
+
+//Actions
+import { checkoutCart } from "../../redux/actions/item";
+import { COFFEE_SHOPS, SIGNUP } from "../../Navigation/screenNames";
+import Login from "../Authentication/Login";
+
+const CoffeeCart = ({ items, checkout, navigation }) => {
+  let cartItems = items.map((item) => (
     <CartItem item={item} key={`${item.drink} ${item.option}`} />
   ));
 
+  if (!cartItems.length) {
+    cartItems = (
+      <Image
+        style={{ height: 399, width: 376 }}
+        source={require("../../assets/images/thankyou.png")}
+      />
+    );
+  }
   return (
     <List>
       {cartItems}
-      <Button full danger>
+      <Button full danger onPress={checkout}>
         <Text>Checkout</Text>
       </Button>
     </List>
   );
 };
 
-export default CoffeeCart;
+const mapStateToProps = ({ items }) => ({
+  items,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  checkout: () => dispatch(checkoutCart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoffeeCart);

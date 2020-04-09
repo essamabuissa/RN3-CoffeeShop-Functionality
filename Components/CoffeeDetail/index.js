@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NumericInput from "react-native-numeric-input";
+import { addItemToCart } from "../../redux/actions/item";
 
 // NativeBase Components
 import {
@@ -18,6 +19,7 @@ import {
 
 // Style
 import styles from "./styles";
+import { connect } from "react-redux";
 
 class CoffeeDetail extends Component {
   state = {
@@ -77,14 +79,18 @@ class CoffeeDetail extends Component {
             <CardItem>
               <Body style={styles.numericInput}>
                 <NumericInput
-                  value={this.state.value}
+                  value={this.state.quantity}
                   onChange={(quantity) => this.setState({ quantity })}
-                  initValue={1}
+                  initValue={this.state.quantity}
                 />
               </Body>
 
               <Right>
-                <Button full style={styles.addButton}>
+                <Button
+                  full
+                  style={styles.addButton}
+                  onPress={() => this.props.addItemToCart(this.state)}
+                >
                   <Text>Add</Text>
                 </Button>
               </Right>
@@ -95,5 +101,16 @@ class CoffeeDetail extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+  };
+};
 
-export default CoffeeDetail;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItemToCart: (newItem) => dispatch(addItemToCart(newItem)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoffeeDetail);
